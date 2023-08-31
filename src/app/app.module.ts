@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptorService } from './services/api-interceptor.service';
-import { CoreModule } from './core/core.module';
+import { CoreModule } from './core';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CoreModule.forRoot()
+    CoreModule.forRoot(environment)
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptorService, multi: true}
