@@ -11,16 +11,14 @@ export class AppComponent implements OnInit {
   title = 'api-testing';
 
   constructor(private http:HttpClient, public gateways:GatewaysService) {
-    //console.log('gateways', gateways.list)
-    this.gateways.list$.subscribe
-    ((rr) => console.log('RRRRRR', rr))
 
   }
 
   ngOnInit(): void {
-    this.http.get('https://api.apis.guru/v2/list.json').subscribe(() => {
-      console.log('ESSAI FREE')
-    })
+    //this.http.get('bpi/currentprice.json').subscribe(() => {
+    // this.http.get('https://api.coindesk.com/v1/bpi/currentprice.json').subscribe(() => {
+    //   console.log('ESSAI FREE')
+    // })
   }
 
 

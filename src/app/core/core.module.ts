@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { GatewaysService } from './services/gateways.service';
 import { ENVIRONMENT } from './tokens';
 import { IEnvironment } from './models';
+import { ApiInterceptorService } from './services';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 
@@ -13,7 +15,8 @@ import { IEnvironment } from './models';
     CommonModule
   ],
   providers: [
-    GatewaysService
+    GatewaysService,
+    ApiInterceptorService
   ]
 })
 export class CoreModule {
@@ -22,7 +25,9 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         GatewaysService,
-        {provide: ENVIRONMENT, useValue: environment}
+        {provide: ENVIRONMENT, useValue: environment},
+        {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptorService, multi: true}
+
       ]
     }
   }

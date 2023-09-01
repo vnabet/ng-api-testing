@@ -1,6 +1,26 @@
+<mat-toolbar color="primary">
+  <span>Test de l'API Geofolia</span>
+</mat-toolbar>
+<main>
+  <div class="center">
+    <div>
+      <mat-form-field style="min-width: 500px;">
+        <mat-label>Gateway</mat-label>
+        <mat-select [value]="gateways.current$ | async">
+          <!-- <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option> -->
+          <mat-option *ngFor="let gw of gateways.list$ | async" [value]="gw">
+            {{gw}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</main>
 <ul>
   <li *ngFor="let gw of gateways.list$ |async">{{gw}}</li>
 </ul>
+
 
 <div>{{gateways.current$ | async }}</div>
 <router-outlet></router-outlet>
