@@ -4,18 +4,18 @@ import { Observable, tap, take } from 'rxjs';
 import { GatewaysService } from 'src/app/core';
 
 @Component({
-  selector: 'app-gateway',
-  templateUrl: './gateway.component.html',
-  styleUrls: ['./gateway.component.scss'],
+  selector: 'app-gateway-selector',
+  templateUrl: './gateway-selector.component.html',
+  styleUrls: ['./gateway-selector.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi:true,
-      useExisting: forwardRef(() => GatewayComponent)
+      useExisting: forwardRef(() => GatewaySelectorComponent)
     }
   ]
 })
-export class GatewayComponent implements ControlValueAccessor, OnInit {
+export class GatewaySelectorComponent implements ControlValueAccessor, OnInit {
 
   //gateway:string = '';
 
