@@ -112,8 +112,10 @@ export class GatewaysService {
    * @param gateway Gateway à définir comme courante
    */
   private _updateCurrent(gateway:string) {
-    this._current = gateway;
-    localStorage.setItem('current_gateway', gateway);
-    this._currentSubject.next(gateway);
+    if(this._current !== gateway) {
+      this._current = gateway;
+      localStorage.setItem('current_gateway', gateway);
+      this._currentSubject.next(gateway);
+    }
   }
 }

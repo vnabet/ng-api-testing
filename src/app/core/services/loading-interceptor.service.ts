@@ -1,5 +1,5 @@
-import { Observable, tap, catchError } from 'rxjs';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Observable, tap, catchError, throwError } from 'rxjs';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpStateService } from './httpState.service';
 
@@ -14,9 +14,10 @@ export class LoadingInterceptorService implements HttpInterceptor {
       tap((event) => {
         if(event instanceof HttpResponse) this.loading.complete();
       }),
-      catchError((err, caught) => {
+      catchError((err:HttpErrorResponse) => {
+        this.loading.catchError(err);
         this.loading.complete();
-        return caught;
+        return throwError(()=> err);
       })
     )
   }

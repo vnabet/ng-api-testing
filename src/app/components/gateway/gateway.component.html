@@ -1,0 +1,11 @@
+<mat-form-field style="min-width: 500px;">
+  <mat-label>Gateway</mat-label>
+  <mat-select [value]="current$ | async" (valueChange)="onGatewayChange($event)" [disabled]="disabled">
+    <mat-option *ngFor="let gw of gateways.list$ | async" [value]="gw">
+      {{gw}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+  <mat-icon>edit</mat-icon>
+</button>

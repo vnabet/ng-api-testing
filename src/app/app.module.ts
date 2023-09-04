@@ -13,10 +13,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { GatewayComponent } from './components/gateway/gateway.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GatewayComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatFormFieldModule,
     MatSelectModule,
     MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule,
     FormsModule,
     ReactiveFormsModule,
   ],
