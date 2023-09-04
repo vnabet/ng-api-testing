@@ -2,6 +2,7 @@
   <span>Test de l'API Geofolia</span>
 </mat-toolbar>
 <main>
+  <div *ngIf="httpState.loading | async">Chargement...</div>
   <div class="center">
     <div>
       <mat-form-field style="min-width: 500px;">

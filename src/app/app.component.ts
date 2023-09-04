@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { GatewaysService } from './core';
+import { GatewaysService, HttpStateService } from './core';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +10,15 @@ import { GatewaysService } from './core';
 export class AppComponent implements OnInit {
   title = 'api-testing';
 
-  constructor(private http:HttpClient, public gateways:GatewaysService) {
+  constructor(private http:HttpClient, public gateways:GatewaysService, public httpState:HttpStateService) {
 
   }
 
   ngOnInit(): void {
     //this.http.get('bpi/currentprice.json').subscribe(() => {
-    // this.http.get('https://api.coindesk.com/v1/bpi/currentprice.json').subscribe(() => {
-    //   console.log('ESSAI FREE')
-    // })
+    this.http.get('https://api.coindesk.com/v1/bpi/currentprice.json').subscribe(() => {
+      console.log('ESSAI FREE')
+    })
   }
 
 
