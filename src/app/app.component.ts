@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.http.get('bpi/currentprice.json').subscribe(() => {
-    this.http.get('https://api.coindesk.com/v1/bpi/currentprice.json').subscribe(() => {
+    this.http.get('bpi/currentprice.json').subscribe(() => {
+    //this.http.get('https://api.coindesk.com/v1/bpi/currentprice.json').subscribe(() => {
       console.log('ESSAI FREE')
     })
   }

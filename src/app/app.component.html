@@ -1,8 +1,9 @@
 <mat-toolbar color="primary">
   <span>Test de l'API Geofolia</span>
+  <div class="spacer" style="flex: auto"></div>
+  <mat-spinner color="accent" diameter="30" *ngIf="httpState.loading | async"></mat-spinner>
 </mat-toolbar>
 <main>
-  <div *ngIf="httpState.loading | async">Chargement...</div>
   <div class="center">
     <div>
       <mat-form-field style="min-width: 500px;">
@@ -21,7 +22,5 @@
 <ul>
   <li *ngFor="let gw of gateways.list$ |async">{{gw}}</li>
 </ul>
-
-
 <div>{{gateways.current$ | async }}</div>
 <router-outlet></router-outlet>

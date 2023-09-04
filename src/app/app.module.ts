@@ -11,7 +11,8 @@ import {environment} from '../environments/environment';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
     MatToolbarModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
   ],
