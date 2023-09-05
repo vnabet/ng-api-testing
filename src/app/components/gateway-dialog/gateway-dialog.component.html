@@ -1,5 +1,6 @@
 <h1 mat-dialog-title>Liste des Gateways</h1>
 <div mat-dialog-content>
+  <div>Cette liste est sauvegardée <b>en local sur le navigateur</b></div>
   <mat-list>
 
     <mat-list-item *ngFor="let gateway of gateways.list$| async as gateways">
