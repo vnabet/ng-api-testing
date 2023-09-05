@@ -12,4 +12,10 @@ export class GatewayDialogComponent {
 
   }
 
+  update(gateway:{oldValue:string, newValue:string}) {
+    console.log('mise à jour', gateway);
+
+    this.gateways.update(gateway.oldValue, gateway.newValue);
+  }
+
 }

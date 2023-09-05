@@ -3,16 +3,7 @@
   <mat-list>
 
     <mat-list-item *ngFor="let gateway of gateways.list$| async">
-      <div class="gateway">
-        <div>{{gateway}}</div>
-        <div class="spacer"></div>
-        <button mat-icon-button color="primary" aria-label="Editer la Gateway">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button color="accent" mat-icon-button aria-label="Supprimer la Gateway">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
+      <app-gateway-dialog-item [gateway]="gateway" (update)="update($event)"></app-gateway-dialog-item>
     </mat-list-item>
     <!-- <mat-list-item> -->
     <!-- </mat-list-item> -->

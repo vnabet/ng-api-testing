@@ -20,12 +20,14 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { GatewayDialogComponent } from './components/gateway-dialog/gateway-dialog.component';
 import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
+import { GatewayDialogItemComponent } from './components/gateway-dialog/gateway-dialog-item/gateway-dialog-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GatewaySelectorComponent,
-    GatewayDialogComponent
+    GatewayDialogComponent,
+    GatewayDialogItemComponent
   ],
   imports: [
     BrowserModule,

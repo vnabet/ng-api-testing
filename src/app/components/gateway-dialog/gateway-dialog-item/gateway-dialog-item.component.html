@@ -1,0 +1,23 @@
+<div class="gateway" *ngIf="editMode; else readMode">
+  <mat-form-field class="example-full-width" class="spacer">
+    <mat-label>Modifier la Gateway</mat-label>
+    <input matInput placeholder="Gateway" [value]="gateway" #input>
+  </mat-form-field>
+  <button color="primary" mat-icon-button aria-label="Supprimer la Gateway" (click)="save()">
+    <mat-icon>save</mat-icon>
+  </button>
+</div>
+
+<ng-template #readMode>
+  <div class="gateway">
+    <div>{{gateway}}</div>
+    <div class="spacer"></div>
+    <button mat-icon-button color="primary" aria-label="Editer la Gateway" (click)="edit()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button [color]="deleteClicked?'warn':'primary'" mat-icon-button aria-label="Supprimer la Gateway" (click)="delete()">
+      <mat-icon>{{deleteClicked?'delete_forever':'delete'}}</mat-icon>
+    </button>
+  </div>
+</ng-template>
+

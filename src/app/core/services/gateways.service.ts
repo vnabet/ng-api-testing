@@ -84,6 +84,35 @@ export class GatewaysService {
   }
 
   /**
+   * Mise à jour de la valeur d'une Gateway
+   * @param oldValue nouvelle valeur de la Gateway
+   * @param newValue nouvelle valeur de la Gateway
+   */
+  update(oldValue:string, newValue:string) {
+    // On vérifie tout de même qu'on a des chaînes non nulles et qu'elles soient différentes
+    if(oldValue && newValue && oldValue !== newValue) {
+
+      const list = [...this._list];
+      //On cherche la gateway à modifier dans la liste
+      const index:number = list.indexOf(oldValue);
+
+      if(index > -1){
+        //On met à jour la gateway de la liste
+        list.splice(index, 1, newValue);
+        //Mise à jour de la liste
+        this._updateGateways(list);
+
+        //Si la gateway courante était celle que l'on doit modifier,
+        //alors on la met à jour avec la nouvelle valeur
+        if(this._current === oldValue) {
+          this._updateCurrent(newValue);
+        }
+      }
+
+    }
+  }
+
+  /**
    * Changement de la gateway courante
    * @param gateway Gateway à définir comme courante
    */
