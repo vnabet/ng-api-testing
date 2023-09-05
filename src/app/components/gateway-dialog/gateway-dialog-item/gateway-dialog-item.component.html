@@ -1,9 +1,9 @@
 <div class="gateway" *ngIf="editMode; else readMode">
-  <mat-form-field class="example-full-width" class="auto">
+  <mat-form-field class="example-full-width" class="auto min-width">
     <mat-label>Modifier la Gateway</mat-label>
     <input matInput placeholder="Gateway" [value]="gateway" #input>
   </mat-form-field>
-  <button color="primary" mat-icon-button aria-label="Supprimer la Gateway" (click)="save()">
+  <button color="primary" mat-icon-button aria-label="Supprimer la Gateway" (click)="saveGateway()">
     <mat-icon>save</mat-icon>
   </button>
 </div>
@@ -12,10 +12,10 @@
   <div class="gateway">
     <div>{{gateway}}</div>
     <div class="auto"></div>
-    <button mat-icon-button color="primary" aria-label="Editer la Gateway" (click)="edit()">
+    <button mat-icon-button color="primary" aria-label="Editer la Gateway" (click)="editGateway()">
       <mat-icon>edit</mat-icon>
     </button>
-    <button [color]="deleteClicked?'warn':'primary'" mat-icon-button aria-label="Supprimer la Gateway" (click)="delete()">
+    <button [color]="deleteClicked?'warn':'primary'" mat-icon-button aria-label="Supprimer la Gateway" (click)="deleteGateway()" *ngIf="displayDeleteBtn">
       <mat-icon>{{deleteClicked?'delete_forever':'delete'}}</mat-icon>
     </button>
   </div>

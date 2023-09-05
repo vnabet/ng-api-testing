@@ -65,6 +65,9 @@ export class GatewaysService {
    */
   delete(gateway:string) {
 
+    //Si c'est le dernier élément de la liste, on ne supprimer rien
+    if(this._list.length === 1) return;
+
     const list = [...this._list];
     //On vérifie que la gateway existe bien dans la liste
     const index:number = list.indexOf(gateway);

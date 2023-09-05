@@ -2,19 +2,19 @@
 <div mat-dialog-content>
   <mat-list>
 
-    <mat-list-item *ngFor="let gateway of gateways.list$| async">
-      <app-gateway-dialog-item [gateway]="gateway" (update)="update($event)"></app-gateway-dialog-item>
+    <mat-list-item *ngFor="let gateway of gateways.list$| async as gateways">
+      <app-gateway-dialog-item [gateway]="gateway" (update)="update($event)" (delete)="delete($event)" [displayDeleteBtn]="gateways.length > 1"></app-gateway-dialog-item>
     </mat-list-item>
     <!-- <mat-list-item> -->
     <!-- </mat-list-item> -->
   </mat-list>
   <div class="gateway padding">
 
-    <mat-form-field class="example-full-width" class="auto">
+    <mat-form-field class="example-full-width" class="auto min-width">
       <mat-label>Ajouter une Gateway</mat-label>
-      <input matInput placeholder="Gateway" value="">
+      <input matInput placeholder="Gateway" value="" #input>
     </mat-form-field>
-    <button color="primary" mat-icon-button aria-label="Supprimer la Gateway">
+    <button color="primary" mat-icon-button aria-label="Supprimer la Gateway" (click)="add(input.value)">
       <mat-icon>add</mat-icon>
     </button>
   </div>

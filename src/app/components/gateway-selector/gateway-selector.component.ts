@@ -1,7 +1,7 @@
-import { Component,  OnInit, forwardRef } from '@angular/core';
+import { Component,  OnDestroy,  OnInit, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, tap, take } from 'rxjs';
+import { Observable, tap, take, Subscription } from 'rxjs';
 import { GatewaysService } from 'src/app/core';
 import { GatewayDialogComponent } from '../gateway-dialog/gateway-dialog.component';
 
@@ -17,9 +17,11 @@ import { GatewayDialogComponent } from '../gateway-dialog/gateway-dialog.compone
     }
   ]
 })
-export class GatewaySelectorComponent implements ControlValueAccessor, OnInit {
+export class GatewaySelectorComponent implements ControlValueAccessor, OnInit, OnDestroy {
 
-  //gateway:string = '';
+  gateway:string = '';
+
+  private _gatewaysSub!:Subscription;
 
   onChange = (gateway:string) => {};
 
@@ -29,31 +31,32 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit {
 
   disabled = false;
 
-  current$:Observable<string> | null = null;
-
   constructor(public gateways:GatewaysService, private dialog:MatDialog) {
   }
 
   ngOnInit(): void {
 
-      this.current$ = this.gateways.current$
-      .pipe(
-        take(1),
-        tap((gateway:string) => {
-          //Astuce pour éviter l'erreur NG0100: ExpressionChangedAfterItHasBeenCheckedError
-          setTimeout(() => this.onGatewayChange(gateway, false));
-      }));
+    //this.current$ = this.gateways.current$
+    this._gatewaysSub = this.gateways.current$
+      .subscribe((gateway:string) => {
+        //Astuce pour éviter l'erreur NG0100: ExpressionChangedAfterItHasBeenCheckedError
+        setTimeout(() => {this.onGatewayChange(gateway, false); this.onChange(gateway);});
+        this.gateway = gateway;
+      })
+  }
+
+  ngOnDestroy(): void {
+      this._gatewaysSub.unsubscribe();
   }
 
   onGatewayChange(gateway:string, touched:boolean = true) {
     if(touched) this._markAsTouched();
     this.gateways.setCurrent(gateway);
-    //this.gateway = gateway;
-    this.onChange(gateway);
   }
 
   writeValue(gateway: string) {
     //Ne fait rien pour le moment puisque le champ est en lecture seule
+    //et sa valeur courante est gérée par les service GatewaysService
     //this.gateway = gateway;
   }
 

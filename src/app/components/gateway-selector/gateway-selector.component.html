@@ -1,6 +1,6 @@
-<mat-form-field style="min-width: 500px;">
+<mat-form-field class="auto">
   <mat-label>Gateway</mat-label>
-  <mat-select [value]="current$ | async" (valueChange)="onGatewayChange($event)" [disabled]="disabled">
+  <mat-select [value]="gateway" (valueChange)="onGatewayChange($event)" [disabled]="disabled">
     <mat-option *ngFor="let gw of gateways.list$ | async" [value]="gw">
       {{gw}}
     </mat-option>

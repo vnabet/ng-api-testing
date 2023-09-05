@@ -13,8 +13,14 @@ export class GatewayDialogItemComponent {
   @Output()
   update:EventEmitter<{oldValue:string, newValue:string}> = new EventEmitter();
 
+  @Output()
+  delete:EventEmitter<string> = new EventEmitter();
+
   @Input()
   gateway:string = '';
+
+  @Input()
+  displayDeleteBtn:boolean = true;
 
   private _input!:HTMLInputElement;
 
@@ -29,11 +35,11 @@ export class GatewayDialogItemComponent {
     }
   }
 
-  edit() {
+  editGateway() {
     this.editMode = true;
   }
 
-  save() {
+  saveGateway() {
     this.editMode = false;
     this.deleteClicked = false;
 9
@@ -46,8 +52,12 @@ export class GatewayDialogItemComponent {
     }
   }
 
-  delete() {
-    this.deleteClicked = true;
+  deleteGateway() {
+    if(this.deleteClicked) {
+      this.delete.emit(this.gateway);
+    } else {
+      this.deleteClicked = true;
+    }
   }
 
 }
