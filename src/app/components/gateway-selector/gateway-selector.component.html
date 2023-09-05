@@ -6,6 +6,21 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
-<button mat-icon-button color="primary" aria-label="Éditer la liste des Gateways" (click)="openGatewayDialog()">
+<button mat-icon-button color="primary" aria-label="Éditer la liste des Gateways" (click)="openGatewaysDialog()">
   <mat-icon>edit</mat-icon>
 </button>
+<button mat-icon-button color="primary" aria-label="Éditer la liste des Gateways" (click)="resetGateways()">
+  <mat-icon>settings_backup_restore</mat-icon>
+</button>
+
+<ng-template #deleteConfirmationDialog>
+  <h1 mat-dialog-title>Réinitialisation des Gateways</h1>
+<div mat-dialog-content>
+  Êtes-vous sûr de vouloir réinitialiser la liste des Gateways ?
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="primary" (click)="resetGateways(true);">Réinitialiser</button>
+  <button mat-button mat-dialog-close>Fermer</button>
+</mat-dialog-actions>
+
+</ng-template>

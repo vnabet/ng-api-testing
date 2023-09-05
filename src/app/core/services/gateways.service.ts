@@ -19,13 +19,13 @@ export class GatewaysService {
   //Gateway courante qui est utilisée par les appels à l'api
   current$:Observable<string> = this._currentSubject.asObservable();
 
-  constructor(@Inject(ENVIRONMENT)environment:IEnvironment) {
+  constructor(@Inject(ENVIRONMENT)private environment:IEnvironment) {
     //On récupère la liste des gateways ainsi que la gateway courante dans le localstorage
     const lsGateways:string|null = localStorage.getItem('gateways');
     const lsCurrent:string|null = localStorage.getItem('current_gateway');
 
     //Par défaut ce sera la liste qui est dans les fichiers d'environnement
-    let gateways:string[] = [...(environment.gateways ?? [])];
+    let gateways:string[] = [...(this.environment.gateways ?? [])];
     //Et la gateway courante par défaut sera la première de cette liste
     let current:string = gateways.length?gateways[0]:'';
 
@@ -44,6 +44,18 @@ export class GatewaysService {
     //Mise à jour de la liste et de la gateway courante
     this._updateGateways(gateways);
     this._updateCurrent(current);
+  }
+
+  /**
+   * Reset de la liste des gateways avec la liste par defaut
+   */
+  reset() {
+    const gateways:string[] = [...(this.environment.gateways ?? [])];
+    const current:string = gateways.length?gateways[0]:'';
+
+    this._updateGateways(gateways);
+    this._updateCurrent(current);
+
   }
 
   /**

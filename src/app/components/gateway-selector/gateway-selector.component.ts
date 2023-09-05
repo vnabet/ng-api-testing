@@ -1,7 +1,7 @@
-import { Component,  OnDestroy,  OnInit, forwardRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, forwardRef, ElementRef, TemplateRef, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, tap, take, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { GatewaysService } from 'src/app/core';
 import { GatewayDialogComponent } from '../gateway-dialog/gateway-dialog.component';
 
@@ -30,6 +30,8 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit, O
   touched = false;
 
   disabled = false;
+
+  @ViewChild('deleteConfirmationDialog', {read: TemplateRef}) deleteConfirmationDialog!:TemplateRef<any>;
 
   constructor(public gateways:GatewaysService, private dialog:MatDialog) {
   }
@@ -75,8 +77,16 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit, O
     }
   }
 
-  openGatewayDialog() {
+  openGatewaysDialog() {
     this.dialog.open(GatewayDialogComponent)
+  }
+
+  resetGateways(dialogValidated:boolean = false) {
+    if(dialogValidated) {
+      this.gateways.reset();
+    } else {
+      this.dialog.open(this.deleteConfirmationDialog)
+    }
   }
 
 }
