@@ -3,7 +3,7 @@
     <mat-label>Modifier la Gateway</mat-label>
     <input matInput placeholder="Gateway" [value]="gateway" #input>
   </mat-form-field>
-  <button color="primary" mat-icon-button aria-label="Supprimer la Gateway" (click)="saveGateway()">
+  <button color="primary" mat-icon-button aria-label="Sauvegarder la Gateway" (click)="saveGateway()">
     <mat-icon>save</mat-icon>
   </button>
 </div>
@@ -12,7 +12,7 @@
   <div class="gateway">
     <div>{{gateway}}</div>
     <div class="auto"></div>
-    <button mat-icon-button color="primary" aria-label="Editer la Gateway" (click)="editGateway()">
+    <button mat-icon-button color="primary" aria-label="Éditer la Gateway" (click)="editGateway()">
       <mat-icon>edit</mat-icon>
     </button>
     <button [color]="deleteClicked?'warn':'primary'" mat-icon-button aria-label="Supprimer la Gateway" (click)="deleteGateway()" *ngIf="displayDeleteBtn">
