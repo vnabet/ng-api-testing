@@ -1,17 +1,1 @@
-.gateway {
-  position: relative;
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  // justify-content: center;
-
-  &.padding {
-    padding: 0 16px;
-  }
-
-
-  .spacer {
-    flex: 1 auto;
-  }
-}
+@import '../gateway-dialog.base'

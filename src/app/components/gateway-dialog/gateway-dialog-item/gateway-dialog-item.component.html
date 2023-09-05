@@ -1,5 +1,5 @@
 <div class="gateway" *ngIf="editMode; else readMode">
-  <mat-form-field class="example-full-width" class="spacer">
+  <mat-form-field class="example-full-width" class="auto">
     <mat-label>Modifier la Gateway</mat-label>
     <input matInput placeholder="Gateway" [value]="gateway" #input>
   </mat-form-field>
@@ -11,7 +11,7 @@
 <ng-template #readMode>
   <div class="gateway">
     <div>{{gateway}}</div>
-    <div class="spacer"></div>
+    <div class="auto"></div>
     <button mat-icon-button color="primary" aria-label="Editer la Gateway" (click)="edit()">
       <mat-icon>edit</mat-icon>
     </button>
