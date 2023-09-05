@@ -15,18 +15,16 @@ import { HttpStateService } from './services';
   declarations: [],
   imports: [
     CommonModule
-  ],
-  providers: [
-    GatewaysService,
-    ApiInterceptorService,
-    HttpStateService
   ]
 })
 export class CoreModule {
   public static forRoot(environment:IEnvironment):ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
+
       providers: [
+        ApiInterceptorService,
+        HttpStateService,
         GatewaysService,
         {provide: ENVIRONMENT, useValue: environment},
         {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true},

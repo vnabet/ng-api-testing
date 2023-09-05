@@ -1,3 +1,4 @@
+import { DomainService } from './authentication/services/domain.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { HttpStateService } from './core';
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit {
   })
 
 
-  constructor(private http:HttpClient, public httpState:HttpStateService, private fb:FormBuilder) {
+  constructor(public httpState:HttpStateService, private fb:FormBuilder, private domain:DomainService) {
 
   }
 
@@ -28,6 +29,10 @@ export class AppComponent implements OnInit {
 
     this.form.valueChanges.subscribe((v) => console.log('ccccc', v))
 
+  }
+
+  test() {
+    this.domain.test().subscribe(() => console.log('klmklmkmk'))
   }
 
 
