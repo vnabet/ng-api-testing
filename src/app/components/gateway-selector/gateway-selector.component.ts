@@ -1,7 +1,9 @@
 import { Component,  OnInit, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable, tap, take } from 'rxjs';
 import { GatewaysService } from 'src/app/core';
+import { GatewayDialogComponent } from '../gateway-dialog/gateway-dialog.component';
 
 @Component({
   selector: 'app-gateway-selector',
@@ -29,7 +31,7 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit {
 
   current$:Observable<string> | null = null;
 
-  constructor(public gateways:GatewaysService) {
+  constructor(public gateways:GatewaysService, private dialog:MatDialog) {
   }
 
   ngOnInit(): void {
@@ -68,6 +70,10 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit {
       this.onTouched();
       this.touched = true;
     }
+  }
+
+  openGatewayDialog() {
+    this.dialog.open(GatewayDialogComponent)
   }
 
 }

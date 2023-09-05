@@ -17,11 +17,15 @@ import { GatewaySelectorComponent } from './components/gateway-selector/gateway-
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
+import { GatewayDialogComponent } from './components/gateway-dialog/gateway-dialog.component';
+import {MatListModule} from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GatewaySelectorComponent
+    GatewaySelectorComponent,
+    GatewayDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    MatListModule,
+    MatInputModule,
     FormsModule,
     ReactiveFormsModule,
   ],

@@ -1,0 +1,35 @@
+// .gateways {
+//   display: flex;
+//   flex-wrap: nowrap;
+//   align-items: center;
+//   justify-content: center;
+//   width: 100%;
+//   position: relative;
+
+//   .spacer {
+//     flex: 1 auto;
+//   }
+// }
+
+.gateway {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  // justify-content: center;
+
+  &.padding {
+    padding: 0 16px;
+  }
+
+
+  .spacer {
+    flex: 1 auto;
+  }
+}
+
+::ng-deep .mat-mdc-form-field-subscript-wrapper{
+  margin-bottom: -1.25em;
+}
+
