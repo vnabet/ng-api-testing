@@ -19,20 +19,19 @@ export class AppComponent implements OnInit {
 
   constructor(public httpState:HttpStateService, private fb:FormBuilder, private domains:DomainsService) {
 
+    this.domains.current.subscribe((d) => console.log('CURRENT', d));
+    this.domains.list.subscribe((l) => console.log('LIST', l))
+
   }
 
   ngOnInit(): void {
-    // this.http.get('bpi/currentprice.json').subscribe(() => {
-    // //this.http.get('https://api.coindesk.com/v1/bpi/currentprice.json').subscribe(() => {
-    //   console.log('ESSAI FREE')
-    // })
 
     this.form.valueChanges.subscribe((v) => console.log('ccccc', v))
 
   }
 
   test() {
-    this.domains.test().subscribe(() => console.log('klmklmkmk'))
+    this.domains.clientId = 'ISAES22236T';
   }
 
 

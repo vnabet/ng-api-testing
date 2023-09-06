@@ -1,17 +1,112 @@
+import { Subscription, Subject, Observable, ReplaySubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { IDomain } from '../models';
 
+/**
+ * Service de gestion des domaines
+ */
 @Injectable()
-export class DomainsService {
+export class DomainsService implements OnDestroy {
 
-  constructor(private http:HttpClient) { }
+  // Url du service de récupération des domaines
+  private _url:string = '/domains/';
 
-  test() {
-    // this.http.get('bpi/currentprice.json').subscribe(() => {
-    // //this.http.get('https://api.coindesk.com/v1/bpi/currentprice.json').subscribe(() => {
-    //   console.log('ESSAI FREE')
-    // })
+  //ClientId
+  private _clientId:string = '';
+  get clientId():string {
+    return this._clientId;
+  }
 
-    return this.http.get('bpi/currentprice.json');
+  set clientId(value:string) {
+    this._clientId = value.trim();
+    //Quand on met à jour le clientId, on charge les domaines
+    this._getDomains();
+  }
+
+  // Liste des domaines
+  private _listSubject:Subject<IDomain[]> = new ReplaySubject<IDomain[]>(1);
+  private _list:IDomain[] = [];
+  list:Observable<IDomain[]> = this._listSubject.asObservable();
+
+  // Domaine courant
+  private _sub!:Subscription;
+  private _currentSubject:Subject<IDomain | null> = new ReplaySubject<IDomain | null>(1)
+  current:Observable<IDomain | null> = this._currentSubject.asObservable();
+
+  constructor(private http:HttpClient) {
+    // On récupère, par défaut la liste et le domaine courant dans le localStorage
+    const domainsls = localStorage.getItem('domains');
+
+    if(domainsls) {
+      this._updateDomains(JSON.parse(domainsls) as IDomain[]);
+    }
+
+    const currentls = localStorage.getItem('current_domain');
+
+    if(currentls) {
+      this._updateCurrent(JSON.parse(currentls) as IDomain);
+    } else {
+      this._updateCurrent(null);
+    }
+  }
+
+
+  /**
+   * Récupération de la liste des domaines en fonction du clientId
+   */
+  private _getDomains():void {
+    if(this._clientId) {
+      // Permet d'annuler une éventuelle requête en cours
+      if(this._sub) this._sub.unsubscribe();
+
+      this._sub = this.http.get<IDomain[]>(`${this._url}${this._clientId}`)
+      .subscribe((domains:IDomain[]) => {
+        // Mise à jour de la liste des domaines
+        this._updateDomains(domains);
+        // Mise à jour du domaine courant
+        this._updateCurrent(domains.length?domains[0]:null);
+      })
+
+    }
+  }
+
+  /**
+   * Mise à jour du domaine courant
+   * @param domain Domaine courant
+   */
+  setCurrent(domain:IDomain) {
+    if(this._list.indexOf(domain) > -1) {
+      this._updateCurrent(domain);
+    }
+  }
+
+  ngOnDestroy(): void {
+    // On oublie pas de faire le ménage
+    if(this._sub) this._sub.unsubscribe();
+  }
+
+  /**
+   * Mise à jour de la liste des domaines
+   * @param domains liste de domaines
+   */
+  _updateDomains(domains:IDomain[]) {
+    this._list = domains;
+    localStorage.setItem('domains', JSON.stringify(domains));
+    this._listSubject.next(domains);
+  }
+
+  /**
+   * Mise à jour du domaine courant
+   * @param domain Domaine courant
+   */
+  _updateCurrent(domain:IDomain | null) {
+    if(domain) {
+      localStorage.setItem('current_domain', JSON.stringify(domain));
+      this._currentSubject.next(domain);
+    } else {
+      // s'il est nul, on supprime l'éventuelle entrée dans le localStorage
+      localStorage.removeItem('current_domain');
+    }
   }
 }

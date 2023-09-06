@@ -5,7 +5,9 @@ import { DomainsService } from './services/domains.service';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   imports: [
     CommonModule,
   ],
