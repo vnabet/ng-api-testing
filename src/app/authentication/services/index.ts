@@ -1,1 +1,1 @@
-export {} from './domain.service';
+export {} from './domains.service';

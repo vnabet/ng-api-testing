@@ -1,8 +1,6 @@
-import { environment } from './../../environments/environment';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreModule, IEnvironment } from '../core';
-import { DomainService } from './services/domain.service';
+import { DomainsService } from './services/domains.service';
 
 
 
@@ -10,19 +8,10 @@ import { DomainService } from './services/domain.service';
   declarations: [],
   imports: [
     CommonModule,
-    // CoreModule.forRoot(environment)
   ],
   providers: [
-    DomainService
+    DomainsService
   ]
 })
 export class AuthenticationModule {
-
-  // public static forRoot(environment:IEnvironment):ModuleWithProviders<CoreModule> {
-  //   return {
-  //     ngModule: AuthenticationModule,
-  //     providers: [
-  //     ]
-  //   }
-  // }
 }

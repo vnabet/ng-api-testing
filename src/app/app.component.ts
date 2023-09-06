@@ -1,4 +1,4 @@
-import { DomainService } from './authentication/services/domain.service';
+import { DomainsService } from './authentication/services/domains.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { HttpStateService } from './core';
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   })
 
 
-  constructor(public httpState:HttpStateService, private fb:FormBuilder, private domain:DomainService) {
+  constructor(public httpState:HttpStateService, private fb:FormBuilder, private domains:DomainsService) {
 
   }
 
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   test() {
-    this.domain.test().subscribe(() => console.log('klmklmkmk'))
+    this.domains.test().subscribe(() => console.log('klmklmkmk'))
   }
 
 
