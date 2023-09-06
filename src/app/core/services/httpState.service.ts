@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 /**
  * Service d'état des requêtes HTTP
- * Renseigné grâce à l'intercepteur LoadingInterceptorService
+ * Mis à jour grâce à l'intercepteur LoadingInterceptorService
  */
 @Injectable()
 export class HttpStateService {
@@ -33,6 +33,7 @@ export class HttpStateService {
   complete(request:string) {
     const index:number = this._requests.indexOf(request);
     if(index > -1) this._requests.splice(index, 1);
+    // Si plus de requête en attente, on passe loading à false
     if(!this._requests.length) {
       this._loading.next(false);
     }

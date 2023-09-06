@@ -5,7 +5,7 @@ import { HttpStateService } from './httpState.service';
 
 /**
  * Intercepteur de requête HTTP
- * Permet de connaître l'état de chargement des requête via le service HttpStateService
+ * Permet de connaître l'état de chargement des requêtes via le service HttpStateService
  */
 @Injectable()
 export class LoadingInterceptorService implements HttpInterceptor {
@@ -14,7 +14,7 @@ export class LoadingInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //Quand une requête est en route
-    //On prévient le service HttpStateService qu'on est en chargement
+    //On prévient le service HttpStateService que l'on est en chargement
     this.loading.load(req.url);
     return next.handle(req).pipe(
       tap((event) => {

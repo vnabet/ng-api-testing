@@ -10,7 +10,9 @@ import { LoadingInterceptorService } from './services/loading-interceptor.servic
 import { HttpStateService } from './services';
 
 
-
+/**
+ * Module Core
+ */
 @NgModule({
   declarations: [],
   imports: [
