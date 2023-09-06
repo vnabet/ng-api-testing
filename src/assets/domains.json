@@ -1,0 +1,44 @@
+[
+  {
+    "clientId": "ISAES22236T",
+    "domainId": 51651,
+    "customLabel": null,
+    "name": "COMPLEJO AGRICOLA LAS LOMAS SL",
+    "providerClientId": null,
+    "serviceVersion": "11.00.155",
+    "authenticationModes": "None",
+    "baseProperties": {
+      "dataSetLabel": "",
+      "versionBase": "11.00.143",
+      "dataSource": "",
+      "dataBaseState": 0,
+      "dataBaseName": "",
+      "extendedProperties": {
+        "applicationName": "IS-PV",
+        "dataSetLabel": "",
+        "versionBase": "11.00.143"
+      }
+    }
+  },
+  {
+    "clientId": "ISAES22236T",
+    "domainId": 51622,
+    "customLabel": null,
+    "name": "COMPLEJO L",
+    "providerClientId": null,
+    "serviceVersion": "11.00.155",
+    "authenticationModes": "None",
+    "baseProperties": {
+      "dataSetLabel": "",
+      "versionBase": "11.00.143",
+      "dataSource": "",
+      "dataBaseState": 0,
+      "dataBaseName": "",
+      "extendedProperties": {
+        "applicationName": "IS-PV",
+        "dataSetLabel": "",
+        "versionBase": "11.00.143"
+      }
+    }
+  }
+]

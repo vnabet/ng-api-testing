@@ -10,7 +10,8 @@ import { IDomain } from '../models';
 export class DomainsService implements OnDestroy {
 
   // Url du service de récupération des domaines
-  private _url:string = '/domains/';
+  //private _url:string = '/domains/';
+  private _url:string = 'http://localhost:4200/assets/domains.json';
 
   //ClientId
   private _clientId:string = '';
@@ -60,7 +61,8 @@ export class DomainsService implements OnDestroy {
       // Permet d'annuler une éventuelle requête en cours
       if(this._sub) this._sub.unsubscribe();
 
-      this._sub = this.http.get<IDomain[]>(`${this._url}${this._clientId}`)
+      //this._sub = this.http.get<IDomain[]>(`${this._url}${this._clientId}`)
+      this._sub = this.http.get<IDomain[]>(`${this._url}`)
       .subscribe((domains:IDomain[]) => {
         // Mise à jour de la liste des domaines
         this._updateDomains(domains);
