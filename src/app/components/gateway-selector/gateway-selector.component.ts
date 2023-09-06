@@ -47,10 +47,8 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit, O
     // Souscription à la valeur courante de la gateway depuis le GatewaysService
     this._gatewaysSub = this.gateways.current$
       .subscribe((gateway:string) => {
-        console.log('COUCOU')
         //Astuce pour éviter l'erreur NG0100: ExpressionChangedAfterItHasBeenCheckedError
-        //if(!this.gateway)
-        setTimeout(() => {this.onGatewayChange(gateway, false); this.onChange(gateway);});
+        setTimeout(() => {if(!this.gateway) this.onGatewayChange(gateway, false); this.onChange(gateway);});
         this.gateway = gateway;
       })
   }
@@ -66,7 +64,6 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit, O
    * @param touched est-ce que la mise à jour est faite par l'utilisateur
    */
   onGatewayChange(gateway:string, touched:boolean = true) {
-    console.log('COUCOU2')
     if(touched) this._markAsTouched();
     this.gateways.setCurrent(gateway);
   }
