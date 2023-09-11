@@ -54,7 +54,7 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit, O
   }
 
   ngOnDestroy(): void {
-    // On oublie pas de faire le ménage
+    // On n'oublie pas de faire le ménage
     this._gatewaysSub.unsubscribe();
   }
 
