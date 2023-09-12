@@ -22,17 +22,23 @@ import { DomainsService } from 'src/app/authentication/services/domains.service'
 export class DomainSelectorComponent implements ControlValueAccessor, OnInit, OnDestroy {
 
   //Valeur par défaut d'un domaine
-  private readonly _defaultValue:IDomain = {
-    domainId: '',
-    name: ''
-  };
+  // private readonly _defaultValue:IDomain = {
+  //   domainId: 0,
+  //   name: ''
+  // };
 
   //Domaine sélectionné
-  domain:IDomain = {
-    ...this._defaultValue
-  };
+  domainId:number = 0;
 
   private _domainsSub!:Subscription;
+
+  // callback par défaut de l'implémentation ControlValueAccessor
+  onChange = (domain:IDomain) => {};
+  onTouched = () => {};
+
+  // Implémentation de ControlValueAccessor
+  touched = false;
+  disabled = false;
 
   constructor(public domains:DomainsService) {
 
@@ -42,11 +48,9 @@ export class DomainSelectorComponent implements ControlValueAccessor, OnInit, On
     this.domains.current$.subscribe((domain) => {
       //TODO
       if(domain) {
-        this.domain = domain;
+        this.domainId = domain.domainId;
       } else {
-        this.domain = {
-          ...this._defaultValue
-        }
+        this.domainId = 0;
       }
     })
   }
@@ -55,11 +59,6 @@ export class DomainSelectorComponent implements ControlValueAccessor, OnInit, On
     //On n'oublie pas de faire le ménage
     this._domainsSub?.unsubscribe();
   }
-
-
-  // Callback par défaut de l'implémentation ControlValueAccessor
-  onChange = (domain:IDomain) => {};
-  onTouched = () => {};
 
   /**
    * Implémentation de ControlValueAccessor
@@ -72,17 +71,27 @@ export class DomainSelectorComponent implements ControlValueAccessor, OnInit, On
   /**
    * Implémentation de ControlValueAccessor
    * Enregistrement d'un callback lorsque l'on modifie la valeur du composant
-   */
-  registerOnChange() {
-    // On ne le permet pas
+   * @param onChange callback
+  */
+  registerOnChange(onChange: any) {
+    this.onChange = onChange;
   }
 
   /**
    * Implémentation de ControlValueAccessor
    * Enregistrement d'un callback lorsque l'on focus le composant
+   * @param onTouched callback
    */
-  registerOnTouched() {
-    // On ne le permet pas
+  registerOnTouched(onTouched:any) {
+    this.onTouched = onTouched;
+  }
+
+  // La valeur du composant a été modifié
+  private _markAsTouched() {
+    if (!this.touched) {
+      this.onTouched();
+      this.touched = true;
+    }
   }
 
 }

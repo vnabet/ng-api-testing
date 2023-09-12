@@ -29,7 +29,7 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit, O
 
   private _gatewaysSub!:Subscription;
 
-  // Fonctions par défaut de l'implémentation ControlValueAccessor
+  // callback par défaut de l'implémentation ControlValueAccessor
   onChange = (gateway:string) => {};
   onTouched = () => {};
 
@@ -86,8 +86,7 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit, O
    * @param onChange callback
    */
   registerOnChange(onChange: any) {
-    // On ne permet pas d'enregistrer un nouveau callback
-    //this.onChange = onChange;
+    this.onChange = onChange;
   }
 
   /**
@@ -96,8 +95,7 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit, O
    * @param onTouched callback
    */
   registerOnTouched(onTouched: any) {
-    // On ne permet pas d'enregistrer un nouveau callback
-    //this.onTouched = onTouched;
+    this.onTouched = onTouched;
   }
 
   // La valeur du composant a été modifié

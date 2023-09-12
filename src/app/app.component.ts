@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpStateService } from './core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { debounce, debounceTime, distinctUntilChanged, filter, map } from 'rxjs';
+import { IDomain } from './authentication/models';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,11 @@ export class AppComponent implements OnInit {
 
   form = this.fb.group({
     gateway: new FormControl<string>(''),
-    clientId: this.clientId
+    domainId: new FormControl<number>(0),
+    dataSetLabel: new FormControl<string>(''),
+    clientId: this.clientId,
+    userLogin: new FormControl<string>(''),
+    userPassword: new FormControl<string>('')
   })
 
 
@@ -31,7 +36,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //this.form.valueChanges.subscribe((v) => console.log('ccccc', v))
+    this.form.valueChanges.subscribe((v) => console.log('ccccc', v))
 
     this.clientId.valueChanges
     .pipe(

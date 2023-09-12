@@ -2,6 +2,6 @@
  * Interface définissant un domaine
  */
 export interface IDomain {
-  domainId:string;
+  domainId:number;
   name:string;
 }
