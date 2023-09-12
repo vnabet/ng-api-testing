@@ -21,13 +21,15 @@ import {MatInputModule} from '@angular/material/input';
 import {GatewayDialogItemComponent } from './components/gateway-dialog/gateway-dialog-item/gateway-dialog-item.component';
 import {AuthenticationModule } from './authentication/authentication.module';
 import { CoreModule } from './core';
+import { DomainSelectorComponent } from './components/domain-selector/domain-selector.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GatewaySelectorComponent,
     GatewayDialogComponent,
-    GatewayDialogItemComponent
+    GatewayDialogItemComponent,
+    DomainSelectorComponent
   ],
   imports: [
     BrowserModule,

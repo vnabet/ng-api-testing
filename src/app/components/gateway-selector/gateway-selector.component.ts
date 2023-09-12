@@ -68,21 +68,36 @@ export class GatewaySelectorComponent implements ControlValueAccessor, OnInit, O
     this.gateways.setCurrent(gateway);
   }
 
-  // Implémentation de ControlValueAccessor
+
+  /**
+   * Implémentation de ControlValueAccessor
+   * On fournit une nouvelle valeur sur le composant
+   * @param gateway nouvelle valeur
+   */
   writeValue(gateway: string) {
     //Ne fait rien pour le moment puisque le champ est en lecture seule
     //et sa valeur courante est gérée par les service GatewaysService
     //this.gateway = gateway;
   }
 
-  // Implémentation de ControlValueAccessor
+  /**
+   * Implémentation de ControlValueAccessor
+   * Enregistrement d'un callback lorsque l'on modifie la valeur du composant
+   * @param onChange callback
+   */
   registerOnChange(onChange: any) {
-    this.onChange = onChange;
+    // On ne permet pas d'enregistrer un nouveau callback
+    //this.onChange = onChange;
   }
 
-  // Implémentation de ControlValueAccessor
+  /**
+   * Implémentation de ControlValueAccessor
+   * Enregistrement d'un callback lorsque l'on focus le composant
+   * @param onTouched callback
+   */
   registerOnTouched(onTouched: any) {
-    this.onTouched = onTouched;
+    // On ne permet pas d'enregistrer un nouveau callback
+    //this.onTouched = onTouched;
   }
 
   // La valeur du composant a été modifié

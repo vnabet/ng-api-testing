@@ -28,12 +28,12 @@ export class DomainsService implements OnDestroy {
   // Liste des domaines
   private _listSubject:Subject<IDomain[]> = new ReplaySubject<IDomain[]>(1);
   private _list:IDomain[] = [];
-  list:Observable<IDomain[]> = this._listSubject.asObservable();
+  list$:Observable<IDomain[]> = this._listSubject.asObservable();
 
   // Domaine courant
   private _sub!:Subscription;
   private _currentSubject:Subject<IDomain | null> = new ReplaySubject<IDomain | null>(1)
-  current:Observable<IDomain | null> = this._currentSubject.asObservable();
+  current$:Observable<IDomain | null> = this._currentSubject.asObservable();
 
   constructor(private http:HttpClient) {
     // On récupère, par défaut la liste et le domaine courant dans le localStorage
