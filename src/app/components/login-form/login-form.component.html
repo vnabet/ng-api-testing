@@ -7,16 +7,17 @@
     <input matInput placeholder="ISAES12345U" formControlName="clientId">
   </mat-form-field>
 
-  <mat-form-field class="full-width">
-    <mat-label>Domaine</mat-label>
-    <ng-container *ngIf="domains.list$ | async as domains">
-      <mat-select [disabled]="domains.length <= 1" formControlName="domainId">
-        <mat-option *ngFor="let domain of domains" [value]="domain.domainId">
-          {{domain.name}}
-        </mat-option>
-      </mat-select>
-    </ng-container>
-  </mat-form-field>
+  <ng-container *ngIf="domains.list$ | async as domains">
+    <mat-form-field class="full-width">
+      <mat-label>Domaine</mat-label>
+        <mat-select [disabled]="domains.length <= 1" formControlName="domainId">
+          <mat-option *ngFor="let domain of domains" [value]="domain.domainId">
+            {{domain.name}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </ng-container>
+
 
   <mat-form-field class="full-width">
     <mat-label>Utilisateur</mat-label>
@@ -27,7 +28,7 @@
     <mat-label>Mot de passe</mat-label>
     <input matInput placeholder="" formControlName="userPassword">
   </mat-form-field>
-
+  <button mat-raised-button type="submit" color="primary">Se connecter</button>
 </form>
 
 

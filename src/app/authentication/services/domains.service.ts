@@ -41,6 +41,8 @@ export class DomainsService implements OnDestroy {
 
     if(domainsls) {
       this._updateDomains(JSON.parse(domainsls) as IDomain[]);
+    } else {
+      this._updateDomains([]);
     }
 
     const currentls = localStorage.getItem('current_domain');
