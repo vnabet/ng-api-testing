@@ -15,19 +15,9 @@ export class AppComponent implements OnInit {
   title = 'api-testing';
 
 
-  clientId = new FormControl<string>('');
-
-  form = this.fb.group({
-    gateway: new FormControl<string>(''),
-    domainId: new FormControl<number>(0),
-    dataSetLabel: new FormControl<string>(''),
-    clientId: this.clientId,
-    userLogin: new FormControl<string>(''),
-    userPassword: new FormControl<string>('')
-  })
 
 
-  constructor(public httpState:HttpStateService, private fb:FormBuilder, private domains:DomainsService) {
+  constructor(public httpState:HttpStateService) {
 
     // this.domains.current.subscribe((d) => console.log('CURRENT', d));
     // this.domains.list.subscribe((l) => console.log('LIST', l))
@@ -36,25 +26,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.form.valueChanges.subscribe((v) => console.log('ccccc', v))
 
-    this.clientId.valueChanges
-    .pipe(
-      debounceTime(1000),
-      distinctUntilChanged(),
-      //filter(v => {return !!v && !!v.trim() && v.trim().length >= 3}),
-      map(v => v?.trim())
-    )
-    .subscribe(clientId => {
-      if(!!clientId && clientId.trim().length >= 3) {
-        this.domains.clientId = clientId;
-      }
-    })
 
   }
 
   test() {
-    this.domains.clientId = 'ISAES22236T';
+    //this.domains.clientId = 'ISAES22236T';
   }
 
 

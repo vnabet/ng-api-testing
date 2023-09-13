@@ -21,7 +21,7 @@ import {MatInputModule} from '@angular/material/input';
 import {GatewayDialogItemComponent } from './components/gateway-dialog/gateway-dialog-item/gateway-dialog-item.component';
 import {AuthenticationModule } from './authentication/authentication.module';
 import { CoreModule } from './core';
-import { DomainSelectorComponent } from './components/domain-selector/domain-selector.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { DomainSelectorComponent } from './components/domain-selector/domain-sel
     GatewaySelectorComponent,
     GatewayDialogComponent,
     GatewayDialogItemComponent,
-    DomainSelectorComponent
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

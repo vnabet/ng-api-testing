@@ -75,12 +75,24 @@ export class DomainsService implements OnDestroy {
 
   /**
    * Mise à jour du domaine courant
-   * @param domain Domaine courant
+   * @param domainId Id du domaine
    */
-  setCurrent(domain:IDomain) {
-    if(this._list.indexOf(domain) > -1) {
-      this._updateCurrent(domain);
+  setCurrent(domainId:number) {
+    if(this._list) {
+      const current = this._list.find((domain) => domain.domainId === domainId);
+
+      if(current) {
+        this._updateCurrent(current);
+      }
     }
+  }
+
+  /**
+   * réinitialisation les domaine
+   */
+  clear() {
+    this._updateDomains([]);
+    this._updateCurrent(null);
   }
 
   ngOnDestroy(): void {
@@ -105,10 +117,11 @@ export class DomainsService implements OnDestroy {
   _updateCurrent(domain:IDomain | null) {
     if(domain) {
       localStorage.setItem('current_domain', JSON.stringify(domain));
-      this._currentSubject.next(domain);
     } else {
       // s'il est nul, on supprime l'éventuelle entrée dans le localStorage
       localStorage.removeItem('current_domain');
     }
+    this._currentSubject.next(domain);
+
   }
 }
