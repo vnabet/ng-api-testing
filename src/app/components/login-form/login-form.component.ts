@@ -3,6 +3,11 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, Subject, takeUntil } from 'rxjs';
 import { DomainsService } from 'src/app/authentication/services/domains.service';
 
+/**
+ * TODO Ajouter les commentaire
+ * TODO Remonter les erreurs sur la liste des domaines
+ * TODO les champs ne se disable pas ??
+ */
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -35,9 +40,9 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.form.valueChanges.subscribe((vc) => {
-      console.log('FORM', vc);
-    })
+    // this.form.valueChanges.subscribe((vc) => {
+    //   console.log('FORM', vc);
+    // })
 
 
     this.domains.current$
@@ -62,7 +67,6 @@ export class LoginFormComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
       debounceTime(500),
       distinctUntilChanged(),
-      //filter(v => {return !!v && !!v.trim() && v.trim().length >= 3}),
       map(v => v?.trim())
     )
     .subscribe(clientId => {
