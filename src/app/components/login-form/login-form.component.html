@@ -18,6 +18,16 @@
     </ng-container>
   </mat-form-field>
 
+  <mat-form-field class="full-width">
+    <mat-label>Utilisateur</mat-label>
+    <input matInput placeholder="" formControlName="userLogin">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Mot de passe</mat-label>
+    <input matInput placeholder="" formControlName="userPassword">
+  </mat-form-field>
+
 </form>
 
 
@@ -26,3 +36,4 @@
   <li>{{values.clientId}}</li>
   <li>{{values.domainId}}</li>
 </ul>
+<div>Formulaire valide : {{form.valid}}</div>
