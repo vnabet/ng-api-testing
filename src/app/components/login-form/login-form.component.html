@@ -7,16 +7,14 @@
     <input matInput placeholder="ISAES12345U" formControlName="clientId">
   </mat-form-field>
 
-  <ng-container *ngIf="domains.list$ | async as domains">
-    <mat-form-field class="full-width">
-      <mat-label>Domaine</mat-label>
-        <mat-select [disabled]="domains.length <= 1" formControlName="domainId">
-          <mat-option *ngFor="let domain of domains" [value]="domain.domainId">
-            {{domain.name}}
-          </mat-option>
-        </mat-select>
-    </mat-form-field>
-  </ng-container>
+  <mat-form-field class="full-width">
+    <mat-label>Domaine</mat-label>
+      <mat-select formControlName="domainId">
+        <mat-option *ngFor="let domain of domains.list$ | async" [value]="domain.domainId">
+          {{domain.name}}
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
 
 
   <mat-form-field class="full-width">
@@ -36,5 +34,6 @@
   <li>{{values.gateway}}</li>
   <li>{{values.clientId}}</li>
   <li>{{values.domainId}}</li>
+  <li>{{values.userLogin}}</li>
 </ul>
 <div>Formulaire valide : {{form.valid}}</div>
