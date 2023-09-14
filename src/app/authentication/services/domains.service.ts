@@ -65,12 +65,15 @@ export class DomainsService implements OnDestroy {
 
       this._sub = this.http.get<IDomain[]>(`${this._url}${this._clientId}`)
       //this._sub = this.http.get<IDomain[]>(`${this._url}`)
-      .subscribe((domains:IDomain[]) => {
+      .subscribe({next:(domains:IDomain[]) => {
         // Mise à jour de la liste des domaines
         this._updateDomains(domains);
         // Mise à jour du domaine courant
         this._updateCurrent(domains.length?domains[0]:null);
-      })
+      },error: (error) => {
+        // En cas d'erreur on réinitialise les domaines
+        this.clear();
+      }})
 
     }
   }

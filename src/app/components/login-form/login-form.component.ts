@@ -85,6 +85,10 @@ export class LoginFormComponent implements OnInit, OnDestroy {
       this.destroy$.complete();
   }
 
+  onSubmit() {
+    console.log('FORM', this.form.valid, this.form.value)
+  }
+
 
 
 }
