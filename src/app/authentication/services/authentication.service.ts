@@ -4,7 +4,7 @@ import { ILoginPayload } from '../models/login-payload';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { IToken } from '../models/token';
 import { IJWT } from '../models';
-import { AccesstokenToJWTService } from '../converters/accesstoken-to-jwt.service';
+import { AccesstokenToJWTConverter } from '../converters/accesstoken-to-jwt.service';
 
 /**
  * TODO Commentaires
@@ -24,7 +24,7 @@ export class AuthenticationService implements OnDestroy {
 
   private destroy$ = new Subject();
 
-  constructor(private http:HttpClient, private _tokenToJWT:AccesstokenToJWTService) {
+  constructor(private http:HttpClient, private _tokenToJWT:AccesstokenToJWTConverter) {
     const tokenls = localStorage.getItem('token');
 
     if(tokenls) {

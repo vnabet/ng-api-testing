@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AccesstokenToJWTService } from './accesstoken-to-jwt.service';
+import { AccesstokenToJWTConverter } from './accesstoken-to-jwt.service';
 
 describe('AccesstokenToJWTService', () => {
-  let service: AccesstokenToJWTService;
+  let service: AccesstokenToJWTConverter;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AccesstokenToJWTService);
+    service = TestBed.inject(AccesstokenToJWTConverter);
   });
 
   it('should be created', () => {

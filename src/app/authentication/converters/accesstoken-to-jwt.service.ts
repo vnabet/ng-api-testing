@@ -5,7 +5,7 @@ import { IJWT, IJWTDTO } from '../models/jwt';
  * TODO Commentaires
  */
 @Injectable()
-export class AccesstokenToJWTService {
+export class AccesstokenToJWTConverter {
 
   public decode(token:string):IJWT {
     var base64Url = token.split('.')[1];

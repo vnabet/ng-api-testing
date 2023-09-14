@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomainsService } from './services/domains.service';
 import { AuthenticationService } from './services/authentication.service';
-import { AccesstokenToJWTService } from './converters/accesstoken-to-jwt.service';
+import { AccesstokenToJWTConverter } from './converters/accesstoken-to-jwt.service';
 
 
 
@@ -16,7 +16,7 @@ import { AccesstokenToJWTService } from './converters/accesstoken-to-jwt.service
   providers: [
     DomainsService,
     AuthenticationService,
-    AccesstokenToJWTService
+    AccesstokenToJWTConverter
   ],
 })
 export class AuthenticationModule {
