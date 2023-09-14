@@ -1,13 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, Subject, takeUntil, tap, combineLatestWith, switchMap, Observable } from 'rxjs';
-import { AuthenticationService } from 'src/app/authentication';
-import { DomainsService } from 'src/app/authentication/services/domains.service';
-import { HttpStateService, greaterThan } from 'src/app/core';
+import { Component } from '@angular/core';
 import { LoginFormService } from './login-form.service';
 
 /**
  * TODO Ajouter les commentaire
+ * TODO Remonter l'erreur à la connexion
  */
 @Component({
   selector: 'app-login-form',

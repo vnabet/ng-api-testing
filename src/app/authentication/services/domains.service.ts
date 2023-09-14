@@ -10,7 +10,7 @@ import { IDomain } from '../models';
 export class DomainsService implements OnDestroy {
 
   // Url du service de récupération des domaines
-  private _url:string = '/domains/';
+  private _url:string = '/v1/domains/';
   //private _url:string = 'http://localhost:4200/assets/domains.json';
 
   //ClientId
