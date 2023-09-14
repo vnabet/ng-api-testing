@@ -23,23 +23,23 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   ]
 
 
-  clientId = new FormControl<string>(localStorage.getItem('clientId') ?? '', {validators: this._validators});
+  private _clientId = new FormControl<string>(localStorage.getItem('clientId') ?? '', {validators: this._validators});
 
   // domainId = new FormControl<number>({value: 0, disabled: true}, {validators: this._validators});
-  domainId = new FormControl<number>(0, {validators: [...this._validators, greaterThan(0)]});
+  private _domainId = new FormControl<number>(0, {validators: [...this._validators, greaterThan(0)]});
 
-  form = this.fb.group({
+  loginForm = this.fb.group({
     gateway: new FormControl<string>('', {validators: this._validators}),
-    domainId: this.domainId,
+    domainId: this._domainId,
     dataSetLabel: new FormControl<string>(''),
-    clientId: this.clientId,
+    clientId: this._clientId,
     userLogin: new FormControl<string>('', {validators: this._validators}),
     userPassword: new FormControl<string>('', {validators: this._validators})
   })
 
-  submitDisabled$:Observable<boolean> = this.form.valueChanges.pipe(
+  submitDisabled$:Observable<boolean> = this.loginForm.valueChanges.pipe(
     combineLatestWith(this.httpState.loading),
-    map(([values, load]) => load || this.form.invalid ),
+    map(([values, load]) => load || this.loginForm.invalid ),
   )
 
   constructor(
@@ -51,29 +51,29 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.form.valueChanges.subscribe((vc) => {
-      console.log('FORM', vc, this.form.getRawValue());
+    this.loginForm.valueChanges.subscribe((vc) => {
+      console.log('FORM', vc, this.loginForm.getRawValue());
     })
 
 
     this.domains.current$
     .pipe(takeUntil(this.destroy$))
     .subscribe((domain) => {
-      if(domain && (this.domainId.value === 0 || this.domainId.value !== domain.domainId)) {
-        this.domainId.patchValue(domain.domainId);
+      if(domain && (this._domainId.value === 0 || this._domainId.value !== domain.domainId)) {
+        this._domainId.patchValue(domain.domainId);
       } else {
 
-        if(!domain) this.domainId.patchValue(0);
+        if(!domain) this._domainId.patchValue(0);
       }
     })
 
-    this.domainId.valueChanges
+    this._domainId.valueChanges
     .pipe(takeUntil(this.destroy$))
     .subscribe(domainId => {
       if(domainId) this.domains.setCurrent(domainId);
     })
 
-    this.clientId.valueChanges
+    this._clientId.valueChanges
     .pipe(
       takeUntil(this.destroy$),
       debounceTime(500),
@@ -97,17 +97,15 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    if(this.form.valid) {
+    if(this.loginForm.valid) {
       this.authentication.loginV2({
-        clientId: this.form.value.clientId || '',
+        clientId: this.loginForm.value.clientId || '',
         dataSetLabel: '',
-        domainId: this.form.value.domainId?.toString() || '',
-        userLogin: this.form.value.userLogin || '',
-        userPassword: this.form.value.userPassword || ''
+        domainId: this.loginForm.value.domainId?.toString() || '',
+        userLogin: this.loginForm.value.userLogin || '',
+        userPassword: this.loginForm.value.userPassword || ''
       })
     }
   }
-
-
 
 }

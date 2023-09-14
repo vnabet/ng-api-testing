@@ -1,4 +1,4 @@
-<form [formGroup]="form" (submit)="onSubmit()">
+<form [formGroup]="loginForm" (submit)="onSubmit()">
 
   <app-gateway-selector formControlName="gateway"></app-gateway-selector>
 
@@ -28,12 +28,3 @@
   </mat-form-field>
   <button mat-raised-button type="submit" color="primary" [disabled]="submitDisabled$ | async">Se connecter</button>
 </form>
-
-
-<ul *ngIf="form.valueChanges |async as values">
-  <li>{{values.gateway}}</li>
-  <li>{{values.clientId}}</li>
-  <li>{{values.domainId}}</li>
-  <li>{{values.userLogin}}</li>
-</ul>
-<div>Formulaire valide : {{form.valid}}</div>
