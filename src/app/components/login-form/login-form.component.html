@@ -26,7 +26,7 @@
     <mat-label>Mot de passe</mat-label>
     <input matInput placeholder="" formControlName="userPassword">
   </mat-form-field>
-  <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Se connecter</button>
+  <button mat-raised-button type="submit" color="primary" [disabled]="submitDisabled$ | async">Se connecter</button>
 </form>
 
 

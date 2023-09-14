@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, Subject, takeUntil, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Subject, takeUntil, tap, combineLatestWith, switchMap, Observable } from 'rxjs';
+import { AuthenticationService } from 'src/app/authentication';
 import { DomainsService } from 'src/app/authentication/services/domains.service';
-import { greaterThan } from 'src/app/core';
+import { HttpStateService, greaterThan } from 'src/app/core';
 
 /**
  * TODO Ajouter les commentaire
- *
+ * TODO Sauvgarder le login
  */
 @Component({
   selector: 'app-login-form',
@@ -36,8 +37,17 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     userPassword: new FormControl<string>('', {validators: this._validators})
   })
 
-  constructor(private fb:FormBuilder, public domains:DomainsService){
+  submitDisabled$:Observable<boolean> = this.form.valueChanges.pipe(
+    combineLatestWith(this.httpState.loading),
+    map(([values, load]) => load || this.form.invalid ),
+  )
 
+  constructor(
+    private fb:FormBuilder,
+    public domains:DomainsService,
+    private authentication:AuthenticationService,
+    private httpState:HttpStateService,
+    ){
   }
 
   ngOnInit(): void {
@@ -87,7 +97,15 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log('FORM', this.form.valid, this.form.value)
+    if(this.form.valid) {
+      this.authentication.loginV2({
+        clientId: this.form.value.clientId || '',
+        dataSetLabel: '',
+        domainId: this.form.value.domainId?.toString() || '',
+        userLogin: this.form.value.userLogin || '',
+        userPassword: this.form.value.userPassword || ''
+      })
+    }
   }
 
 
