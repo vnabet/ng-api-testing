@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (submit)="onSubmit()">
+<form [formGroup]="loginFormService.loginForm" (submit)="onSubmit()">
 
   <app-gateway-selector formControlName="gateway"></app-gateway-selector>
 
@@ -10,12 +10,11 @@
   <mat-form-field class="full-width">
     <mat-label>Domaine</mat-label>
       <mat-select formControlName="domainId">
-        <mat-option *ngFor="let domain of domains.list$ | async" [value]="domain.domainId">
+        <mat-option *ngFor="let domain of loginFormService.domains$ | async" [value]="domain.domainId">
           {{domain.name}}
         </mat-option>
       </mat-select>
   </mat-form-field>
-
 
   <mat-form-field class="full-width">
     <mat-label>Utilisateur</mat-label>
@@ -26,5 +25,5 @@
     <mat-label>Mot de passe</mat-label>
     <input matInput placeholder="" formControlName="userPassword">
   </mat-form-field>
-  <button mat-raised-button type="submit" color="primary" [disabled]="submitDisabled$ | async">Se connecter</button>
+  <button mat-raised-button type="submit" color="primary" [disabled]="loginFormService.submitDisabled$ | async">Se connecter</button>
 </form>
