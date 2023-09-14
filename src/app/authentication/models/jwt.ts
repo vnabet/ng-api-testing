@@ -1,5 +1,5 @@
 /**
- * TODO Commentaires
+ * DTO du JWT (traduit depuis l'access token)
  */
 export interface IJWTDTO {
   ClientId:string,
@@ -21,6 +21,10 @@ export interface IJWTDTO {
   nbf:string
 }
 
+/**
+ * Objet métier du JWT
+ * On a filtré les domaines, traduit les dates et les booléens
+ */
 export interface IJWT {
   clientId:string,
   dataSetLabel:string,

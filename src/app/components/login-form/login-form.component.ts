@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { LoginFormService } from './login-form.service';
 
 /**
- * TODO Ajouter les commentaire
- * TODO Remonter l'erreur à la connexion
+ * Formulaire de connexion
+ * #TODO Remonter l'erreur à la connexion
  */
 @Component({
   selector: 'app-login-form',
@@ -17,6 +17,9 @@ export class LoginFormComponent {
     ){
   }
 
+  /**
+   * Submit du formulaire
+   */
   onSubmit() {
     this.loginFormService.submit();
   }
