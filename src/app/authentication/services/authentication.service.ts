@@ -63,6 +63,7 @@ export class AuthenticationService implements OnDestroy {
   logout() {
     this._token = null;
     localStorage.removeItem('token');
+    this._jwt = null;
   }
 
 
