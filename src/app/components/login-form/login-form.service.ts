@@ -47,13 +47,9 @@ export class LoginFormService implements OnDestroy {
     private httpState:HttpStateService,
   ) {
 
-    this.loginForm.valueChanges
+    this._userLogin.valueChanges
     .pipe(takeUntil(this.destroy$))
-    .subscribe((vc) => {
-      console.log('FORM', vc, this.loginForm.getRawValue());
-    })
-
-    this._userLogin.valueChanges.subscribe((userLogin) => {
+    .subscribe((userLogin) => {
       if(userLogin) {
         localStorage.setItem('userLogin', userLogin);
       } else {
