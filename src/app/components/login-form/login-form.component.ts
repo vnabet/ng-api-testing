@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, Subject, takeUntil, tap } from 'rxjs';
 import { DomainsService } from 'src/app/authentication/services/domains.service';
+import { greaterThan } from 'src/app/core';
 
 /**
  * TODO Ajouter les commentaire
- * TODO Remonter les erreurs sur la liste des domaines
+ *
  */
 @Component({
   selector: 'app-login-form',
@@ -24,7 +25,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   clientId = new FormControl<string>(localStorage.getItem('clientId') ?? '', {validators: this._validators});
 
   // domainId = new FormControl<number>({value: 0, disabled: true}, {validators: this._validators});
-  domainId = new FormControl<number>(0, {validators: this._validators});
+  domainId = new FormControl<number>(0, {validators: [...this._validators, greaterThan(0)]});
 
   form = this.fb.group({
     gateway: new FormControl<string>('', {validators: this._validators}),
