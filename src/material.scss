@@ -1,0 +1,33 @@
+@use '@angular/material' as mat;
+
+@import './styles/palettes';
+
+@include mat.core();
+
+$theme: mat.define-light-theme((
+ color: (
+   primary: $primary-palette,
+   accent: $accent-palette,
+   warn: $warn-palette
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+// @include mat.all-component-themes($theme);
+@include mat.core-theme($theme);
+@include mat.toolbar-theme($theme);
+@include mat.input-theme($theme);
+@include mat.form-field-theme($theme);
+@include mat.progress-spinner-theme($theme);
+@include mat.select-theme($theme);
+@include mat.icon-theme($theme);
+@include mat.dialog-theme($theme);
+@include mat.list-theme($theme);
+@include mat.button-theme($theme);
+@include mat.icon-button-theme($theme);
+
+
+// body {
+//   background-color: mat.get-color-from-palette($my-primary, 500) !important;
+// }

@@ -1,0 +1,6 @@
+@use '@angular/material' as mat;
+
+@import '../../styles/palettes';
+
+$error: mat.get-color-from-palette($warn-palette, default)
+

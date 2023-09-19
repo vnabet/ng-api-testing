@@ -4,3 +4,11 @@
 //   display: flex;
 //   justify-content: center;
 // }
+
+
+@import './styles/variables';
+
+
+.test {
+  background-color: $error;
+}
