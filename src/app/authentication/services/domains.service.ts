@@ -100,6 +100,20 @@ export class DomainsService implements OnDestroy {
     this._updateCurrent(null);
   }
 
+  /**
+   * Renvoie un domaine de la liste, de façon synchrone
+   * @param domainId Id de domaine
+   * @returns renvoie le domaine dans la liste
+   */
+  get(domainId:number):IDomain | null {
+
+    let domain:IDomain | undefined;
+
+    if(this._list && this._list.length) domain = this._list.find((d) => d.domainId === domainId);
+
+    return domain || null;
+  }
+
   ngOnDestroy(): void {
     // On oublie pas de faire le ménage
     if(this._sub) this._sub.unsubscribe();

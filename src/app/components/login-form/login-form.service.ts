@@ -100,8 +100,8 @@ export class LoginFormService implements OnDestroy {
       map(v => v?.trim())
     )
     .subscribe(clientId => {
-      // Si le clientId a une taille de 3 caractères ou plus
-      if(!!clientId && clientId.length >= 3) {
+      // Si le clientId a une taille de 2 caractères ou plus
+      if(!!clientId && clientId.length >= 2) {
         // On met à jour la valeur en localstorage
         localStorage.setItem('clientId', clientId)
         // On informe le service des domaines que le clientId a été modifié => chargement http des domaines
@@ -127,10 +127,12 @@ export class LoginFormService implements OnDestroy {
   submit() {
     // Le formulaire doit être valide
     if(this.loginForm.valid) {
+      const domain = this.domains.get(this.loginForm.value.domainId || 0);
+
       // On s'authentifie
       this.authentication.loginV2({
         clientId: this.loginForm.value.clientId || '',
-        dataSetLabel: '',
+        dataSetLabel: domain?.baseProperties.dataSetLabel ?? '',
         domainId: this.loginForm.value.domainId?.toString() || '',
         userLogin: this.loginForm.value.userLogin || '',
         userPassword: this.loginForm.value.userPassword || ''
