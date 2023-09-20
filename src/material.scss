@@ -10,7 +10,7 @@ $theme: mat.define-light-theme((
    accent: $accent-palette,
    warn: $warn-palette
  ),
- typography: mat.define-typography-config(),
+ typography: mat.define-typography-config($font-family: "Poppins"),
  density: 0,
 ));
 
