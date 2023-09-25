@@ -6,9 +6,28 @@
 // }
 
 
-@import './styles/variables';
+@use 'sass:map';
+@use '@angular/material' as mat;
+// @import './styles/variables';
+
+@import '../styles/theme';
+
+
+
+$typography-config: mat.get-typography-config($theme);
+$color-config: mat.get-color-config($theme);
+
+
+$warn-palette: map.get($color-config, 'warn');
+
 
 
 .test {
-  background-color: $error;
+  //background-color: $error;
+  @include mat.typography-level($typography-config, 'body-1');
+  background-color: mat.get-color-from-palette($warn-palette, default);
+  color: mat.get-color-from-palette($warn-palette, default-contrast);
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
 }
