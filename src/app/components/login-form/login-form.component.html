@@ -1,5 +1,7 @@
 <form [formGroup]="loginFormService.loginForm" (submit)="onSubmit()">
 
+  <div class="error">Erreur: {{loginFormService.error$ | async}}</div>
+
   <app-gateway-selector formControlName="gateway"></app-gateway-selector>
 
   <mat-form-field class="full-width">

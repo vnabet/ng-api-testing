@@ -46,6 +46,10 @@ export class LoginFormService implements OnDestroy {
   // Liste des domaines
   domains$ = this.domains.list$;
 
+  //erreurs remontées par le service de login
+  error$ = this.authentication.error$;
+
+
   constructor(
     private fb:FormBuilder,
     private domains:DomainsService,

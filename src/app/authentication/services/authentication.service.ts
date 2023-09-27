@@ -23,7 +23,7 @@ export class AuthenticationService implements OnDestroy {
 
   // Erreur éventuellement levée lors du login
   private _error:Subject<string> = new Subject();
-  public error:Observable<string> = this._error.asObservable();
+  public error$:Observable<string> = this._error.asObservable();
 
   // Pour la désouscription des observables
   private destroy$ = new Subject();
@@ -44,6 +44,9 @@ export class AuthenticationService implements OnDestroy {
    * @param payload informations de connexion
    */
   loginV2(payload:ILoginPayload) {
+
+    //réinitialisation de l'erreur
+    this._error.next('');
 
     // On passe le payload à l'api
     this.http.post<IToken>(this._urlLoginV2, payload)
